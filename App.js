@@ -1,11 +1,22 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Image, StyleSheet, View } from 'react-native';
+import { Images } from './Images';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <StatusBar style='auto' />
+
+      <ScrollView contentContainerStyle={styles.imageContainer}>
+        {Images.map((item) => (
+          <Image
+            key={item.id}
+            style={styles.image}
+            source={{ uri: item.image }}
+          />
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -16,5 +27,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  imageContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 150,
+    height: 150,
+    margin: 5,
   },
 });
